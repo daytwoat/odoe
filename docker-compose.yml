@@ -4,20 +4,20 @@ services:
     user: root
     environment:
       - POSTGRES_USER=odoo
-      - POSTGRES_PASSWORD=odoo123      
+      - POSTGRES_PASSWORD=odoo123
       - POSTGRES_DB=postgres
-    restart: always             # run as a service
+    restart: always # run as a service
     volumes:
-        - ./postgresql:/var/lib/postgresql/data
+      - ./postgresql:/var/lib/postgresql/data
 
-  odoo16:
-    image: odoo:16
+  odoo17:
+    image: odoo:17
     user: root
     depends_on:
       - db
     ports:
       - "10016:8069"
-      - "20016:8072" 
+      - "20016:8072"
     tty: true
     command: --
     environment:
@@ -30,5 +30,4 @@ services:
       # - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
       - ./addons:/mnt/extra-addons
       - ./etc:/etc/odoo
-    restart: always             # run as a service
-    
+    restart: always # run as a service
